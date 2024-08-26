@@ -1,9 +1,9 @@
-import Auction from '../structures/SkyBlock/Auctions/Auction';
-import { AuctionRequestOptions } from './API';
-import Endpoint from '../Private/Endpoint';
-import Client from '../Client';
+import Auction from '../../structures/SkyBlock/Auctions/Auction';
+import { AuctionRequestOptions } from '../API';
+import Endpoint from '../../Private/Endpoint';
+import Client from '../../Client';
 
-class getSkyblockActionsByPlayer extends Endpoint {
+class getAuctionsByPlayer extends Endpoint {
   readonly client: Client;
   constructor(client: Client) {
     super(client);
@@ -19,4 +19,4 @@ class getSkyblockActionsByPlayer extends Endpoint {
   }
 }
 
-export default getSkyblockActionsByPlayer;
+export default getAuctionsByPlayer;

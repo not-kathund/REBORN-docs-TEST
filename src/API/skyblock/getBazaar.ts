@@ -1,9 +1,9 @@
-import Product from '../structures/SkyBlock/Bazzar/Product';
-import { RequestOptions } from '../Private/Requests';
-import Endpoint from '../Private/Endpoint';
-import Client from '../Client';
+import Product from '../../structures/SkyBlock/Bazzar/Product';
+import { RequestOptions } from '../../Private/Requests';
+import Endpoint from '../../Private/Endpoint';
+import Client from '../../Client';
 
-class getSkyblockBazaar extends Endpoint {
+class getBazaar extends Endpoint {
   readonly client: Client;
   constructor(client: Client) {
     super(client);
@@ -17,4 +17,4 @@ class getSkyblockBazaar extends Endpoint {
   }
 }
 
-export default getSkyblockBazaar;
+export default getBazaar;

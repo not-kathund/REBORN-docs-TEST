@@ -1,9 +1,9 @@
-import SkyblockMember from '../structures/SkyBlock/SkyblockMember';
-import { SkyblockRequestOptions } from './API';
-import Endpoint from '../Private/Endpoint';
-import Client from '../Client';
+import SkyblockMember from '../../structures/SkyBlock/SkyblockMember';
+import { SkyblockRequestOptions } from '../API';
+import Endpoint from '../../Private/Endpoint';
+import Client from '../../Client';
 
-class getSkyblockMember extends Endpoint {
+class getMember extends Endpoint {
   readonly client: Client;
   constructor(client: Client) {
     super(client);
@@ -23,12 +23,8 @@ class getSkyblockMember extends Endpoint {
         new SkyblockMember({
           uuid: query,
           profileId: profile.profile_id,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
-          garden: options?.garden ? await this.client.getSkyblockGarden(profile.profile_id) : null,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
-          museum: options?.garden ? await this.client.getSkyblockMuseum(query, profile.profile_id) : null,
+          garden: options?.garden ? await this.client.skyblock.getGarden(profile.profile_id) : null,
+          museum: options?.garden ? await this.client.skyblock.getMuseum(query, profile.profile_id) : null,
           profileName: profile.cute_name,
           gameMode: profile.game_mode || null,
           m: profile.members[query],
@@ -42,4 +38,4 @@ class getSkyblockMember extends Endpoint {
   }
 }
 
-export default getSkyblockMember;
+export default getMember;
