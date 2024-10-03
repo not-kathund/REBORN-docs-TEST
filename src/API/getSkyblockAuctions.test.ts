@@ -3,7 +3,7 @@ import AuctionInfo from '../structures/SkyBlock/Auctions/AuctionInfo';
 import Bid from '../structures/SkyBlock/Auctions/Bid';
 import Client from '../Client';
 import ItemBytes from '../structures/ItemBytes';
-import { Rarity } from '../structures/SkyBlock/SkyblockMemberTypes';
+import { Rarity } from '../structures/SkyBlock/Member/Types';
 import { expect, expectTypeOf, test } from 'vitest';
 
 test('getSkyblockAuctions (raw)', async () => {
@@ -266,7 +266,7 @@ test('getSkyblockAuctions (One Page Include Item Bytes)', async () => {
   client.destroy();
 });
 
-test.skip('getSkyblockAuctions (All Pages)', async () => {
+test('getSkyblockAuctions (All Pages)', async () => {
   const client = new Client(process.env.HYPIXEL_KEY ?? '', { cache: false, checkForUpdates: false });
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
