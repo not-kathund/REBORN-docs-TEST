@@ -1,4 +1,4 @@
-**hypixel-api-reborn v12.0.0-4** • [**Docs**](globals.md)
+**hypixel-api-reborn** • [**Docs**](modules.md)
 
 ***
 
