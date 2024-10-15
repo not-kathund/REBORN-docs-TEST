@@ -54,18 +54,21 @@ jobs:
         run: pnpm docgen
 
       - name: Move new Docs to temp directory
-        run: mv docs/* tmp/
+        run: mv docs/ tmp/
 
       - name: Switch to docs branch
         run: |
           git fetch --all
-          git checkout docs
+          git checkout Docs
 
       - name: Clear Old Docs files
         run: rm -rf API/ Client/ Errors/ index/ modules.md Private/ README.md structures/ utils/
 
       - name: Move new Docs into place
-        run: mv tmp/* ./
+        run: |
+          mv tmp/.nojekyll ./
+          mv tmp/* ./
+          rm -r tmp/
 
       - name: Commit and push changes
         run: |
