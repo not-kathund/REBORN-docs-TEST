@@ -1,0 +1,76 @@
+name: 'Update Docs'
+on:
+  push:
+    paths:
+      - src/**
+    branches:
+      - master
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  pnpm:
+    name: Install dependencies (pnpm)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install node dependencies
+        run: pnpm install
+
+  UpdateDocs:
+    name: Generate docs
+    needs: [pnpm]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install node dependencies
+        run: pnpm install
+
+      - name: Generate Docs
+        run: pnpm docgen
+
+      - name: Move new Docs to temp directory
+        run: mv docs/* tmp/
+
+      - name: Switch to docs branch
+        run: |
+          git fetch --all
+          git checkout docs
+
+      - name: Clear Old Docs files
+        run: rm -rf API/ Client/ Errors/ index/ modules.md Private/ README.md structures/ utils/
+
+      - name: Move new Docs into place
+        run: mv tmp/* ./
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "Docs Updater[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Update Docs" || echo "No changes to commit"
+          git push origin docs
