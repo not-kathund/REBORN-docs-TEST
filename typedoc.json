@@ -1,9 +1,0 @@
-{
-  "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": ["src/"],
-  "out": "docs",
-  "includeVersion": false,
-  "plugin": ["typedoc-plugin-markdown"],
-  "entryPointStrategy": "expand",
-  "hideGenerator": true
-}
