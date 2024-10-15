@@ -62,7 +62,7 @@ jobs:
           git checkout Docs
 
       - name: Clear Old Docs files
-        run: rm -rf API/ Client/ Errors/ index/ modules.md Private/ README.md structures/ utils/
+        run: rm -rf assets/ classes/ functions/ interfaces/ modules/ types/ variables/ 404.html hierarchy.html index.html modules.html sitemap.xml .nojekyll
 
       - name: Move new Docs into place
         run: |
